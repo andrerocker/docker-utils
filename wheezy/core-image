@@ -1,0 +1,7 @@
+#!/bin/bash
+target_dir=/tmp/wheezy
+
+mkdir -p $target_dir
+debootstrap wheezy $target_dir http://mirror-debian.locaweb.com.br/debian
+echo "wheezy container" > $target_dir/etc/motd
+tar -C $target_dir -c . | docker import - wheezy-scratch
